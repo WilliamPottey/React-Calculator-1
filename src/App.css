@@ -1,0 +1,85 @@
+.body {
+  width: 400px;
+  height: 500px;
+  background-color: gray;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  border-radius: 25px;
+  border: 2px solid;
+}
+
+.result_box {
+  width: 300px;
+  height: 100px;
+  background-color: rgb(78, 76, 76);
+  margin-left: 50px;
+  margin-top: 25px;
+  overflow: scroll;
+  border: 5px solid;
+}
+
+.number_buttons {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+
+.individual_num_button {
+  margin-top: 10px;
+}
+
+.operator_buttons {
+  display: inline-flex;
+  flex-direction: row;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+#equals {
+  background-color: rgb(0, 119, 255);
+  width: 100px;
+  color: white;
+}
+
+#clear {
+  margin-top: 10px;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #71ff64;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+button {
+  background-color: #f9f9f9;
+}
+
+#result_text {
+  font-size: 25px;
+  right: 10px;
+  color: white;
+  margin-top: 50px;
+  overflow-wrap: break-word;
+}
+
+#delete {
+  margin-left: 10px;
+}
