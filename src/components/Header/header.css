@@ -1,0 +1,25 @@
+.socials {
+  clip-path: circle(50%);
+}
+
+.dropdown {
+  margin-right: auto;
+}
+
+.navbar {
+  background-color: rgb(56, 50, 50);
+  min-width: 615px;
+}
+
+.navbar-brand {
+  color: rgb(230, 230, 230);
+  pointer-events: none;
+}
+
+.home {
+  margin-right: 10px;
+}
+
+#socialMediaButtons {
+  margin-right: 10px;
+}
