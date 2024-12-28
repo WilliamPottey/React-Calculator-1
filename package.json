@@ -2,8 +2,8 @@
   "name": "calculator",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://williampottey.github.io/React-Calculator-1/",
   "type": "module",
-  "homepage": "https://gitname.github.io/React-Calculator-1",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
