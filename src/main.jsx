@@ -7,7 +7,19 @@ import Header from "./components/Header/header";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Header />
-    <span id="calc_text">Calculator</span>
-    <App />
+    <div className="page-background">
+      <span id="calc_text">Calculator</span>
+      <App />
+      <footer>
+        <div className="footer">
+          Author: William Pottey <br />
+          &copy; Copyright Reserved <br />
+          <div>
+            Contact:{" "}
+            <a href="mailto:Williampottey@gmail.com">Williampottey@gmail.com</a>
+          </div>
+        </div>
+      </footer>
+    </div>
   </StrictMode>
 );
