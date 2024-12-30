@@ -8,12 +8,19 @@ function App() {
   const [evaluated, setEvaluated] = useState(false);
   const [history, setHistory] = useState([]);
 
+  // Handles logic for clicking a number button
   const onClickNumber = (number) => {
     if (result == 0) {
       setResult(number.toString());
       return;
     }
-    console.log(evaluated);
+    if (
+      result.charAt(result.length - 1) == 0 &&
+      isOperator(result.charAt(result.length - 2))
+    ) {
+      setResult(result.slice(0, result.length - 1) + number);
+      return;
+    }
     if (
       evaluated &&
       !isOperator(result.charAt(result.length - 1)) &&
@@ -27,6 +34,7 @@ function App() {
     setResult(result + number);
   };
 
+  // Handles logic for clicking an Operator button
   const onClickOperator = (operator) => {
     let length = result.length;
     if (result.charAt(length - 1) == operator || length == 0) {
@@ -41,10 +49,12 @@ function App() {
     }
   };
 
+  // Logic for clicking the 'CLEAR' button
   const onClickClear = () => {
     setResult("");
   };
 
+  // Logic for clicking the 'DELETE' button. Deletes right most char in the expression.
   const onClickDelete = () => {
     if (evaluated) {
       return;
@@ -52,6 +62,7 @@ function App() {
     setResult(result.slice(0, result.length - 1));
   };
 
+  //Checks if button pressed is an Operator
   const isOperator = (operator) => {
     let operators = ["+", "*", "/", "-"];
     if (operators.includes(operator)) {
@@ -60,6 +71,7 @@ function App() {
     return false;
   };
 
+  // Checks if button pressed is a Parenthesis Button
   const isParenthesis = (char) => {
     if (char === "(" || char === ")") {
       return true;
@@ -67,6 +79,7 @@ function App() {
     return false;
   };
 
+  // Checks if current expression contains an Operator
   const containsOperator = (expression) => {
     let operators = ["+", "*", "/", "-"];
     for (let i = 0; i < operators.length; i++) {
@@ -75,6 +88,7 @@ function App() {
     return false;
   };
 
+  // Handles Equals Button Logic
   const onClickEquals = (result) => {
     let expression = result;
     if (result.includes("(")) {
@@ -91,6 +105,8 @@ function App() {
     console.log(history);
   };
 
+  // Build in eval() function does not work for parenthesis unless it is preceeded by a multiplicaton
+  // sign, so this inserts a '*' if a left parenthesis is identified in the expression.
   const insertMultiplication = (expression) => {
     let length = expression.length;
     console.log("insert", expression);
@@ -103,6 +119,7 @@ function App() {
     return expression;
   };
 
+  // Logic for clicking a Parenethesis Button
   const onClickParenthesis = (side) => {
     if (result.length == 0 && side == "left") {
       setResult("(");
@@ -115,18 +132,24 @@ function App() {
     }
   };
 
+  // Counts how many of a specified character is in a string. Main use is to determine how many
+  // left Parenthesis exist in the expression so we know how many right Parenthesis we allow the user
+  // to add to the expression.
   const countChar = (str, char) => {
     return str.split(char).length - 1;
   };
 
+  // Updates the 'Evaluated' flag to false if a key is pressed on the Calculator.
   useEffect(() => {
     setEvaluated((prevEvaluate) => (prevEvaluate = false));
   }, [pressed]);
 
-  const handleDataFromChild = (data) => {
+  // Sets expression on Calculator to selected Expression within the History Component.
+  const handleExpressionFromHistory = (data) => {
     setResult(data);
   };
 
+  // Sets History array to empty when the 'Clear' button is selected in the History Component.
   const clearHistory = () => {
     setHistory([]);
   };
@@ -251,7 +274,7 @@ function App() {
         </div>
         <History
           pastExpressions={history}
-          sendDataToParent={handleDataFromChild}
+          sendDataToParent={handleExpressionFromHistory}
           clearChildHistory={clearHistory}
         />
       </div>
