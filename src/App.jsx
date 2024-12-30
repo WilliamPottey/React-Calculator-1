@@ -111,7 +111,7 @@ function App() {
     let length = expression.length;
     console.log("insert", expression);
     for (let i = 1; i < length; i++) {
-      if (expression[i] === "(" && expression[i - 1] !== "*") {
+      if (expression[i] === "(" && !isOperator(expression[i - 1])) {
         expression = expression.slice(0, i) + "*" + expression.slice(i);
         i++;
       }
