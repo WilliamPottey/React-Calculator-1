@@ -5,11 +5,11 @@ import App from "./App.jsx";
 import Header from "./components/Header/header";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  <>
     <Header />
     <div className="page-background">
-      <span id="calc_text">Calculator</span>
-      <App />
+      <h1 className="about-header">Calculator</h1>
+      <App className="scroll" />
       <footer>
         <div className="footer">
           Author: William Pottey <br />
@@ -21,5 +21,5 @@ createRoot(document.getElementById("root")).render(
         </div>
       </footer>
     </div>
-  </StrictMode>
+  </>
 );
