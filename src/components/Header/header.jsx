@@ -18,16 +18,22 @@ const header = ({ page }) => {
             William Pottey | B.S. Computational Mathematics
           </a>
           <a href="https://williampottey.github.io/William-Pottey-Portfolio/">
-            <button className="btn btn-secondary home">Home</button>
+            <button className=" button-back-1">
+              <span id="clicked" className="button-front-1">
+                Home
+              </span>
+            </button>
           </a>
           <div className="dropdown">
             <button
-              className="btn btn-secondary dropdown-toggle"
+              className=" button-back-1"
               type="button"
               id="project-dropdown"
               data-bs-toggle="dropdown"
             >
-              Projects
+              <span id="clicked" className="button-front-1">
+                Projects
+              </span>
             </button>
             <ul className="dropdown-menu" aria-labelledby="project-dropdown">
               <li>

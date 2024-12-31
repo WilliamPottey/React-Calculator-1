@@ -9,7 +9,7 @@ createRoot(document.getElementById("root")).render(
     <Header />
     <div className="page-background">
       <h1 className="about-header">Calculator</h1>
-      <App className="scroll" />
+      <App />
       <footer>
         <div className="footer">
           Author: William Pottey <br />
