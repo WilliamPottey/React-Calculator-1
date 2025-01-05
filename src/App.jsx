@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import History from "./components/History/history";
+import { re, typeOf } from "mathjs";
 
 function App() {
   const [result, setResult] = useState("");
@@ -10,8 +11,12 @@ function App() {
 
   // Handles logic for clicking a number button
   const onClickNumber = (number) => {
-    if (result == 0) {
+    if (result === 0) {
       setResult(number.toString());
+      return;
+    }
+    if (result.charAt(result.length - 1) === ")") {
+      setResult(result + "*" + number);
       return;
     }
     if (
@@ -121,6 +126,7 @@ function App() {
 
   // Logic for clicking a Parenethesis Button
   const onClickParenthesis = (side) => {
+    if (result.charAt(result.length - 1) === ".") return;
     if (result.length == 0 && side == "left") {
       setResult("(");
     } else if (side == "left") {
@@ -130,6 +136,45 @@ function App() {
         setResult(result + ")");
       }
     }
+  };
+
+  const onClickDecimal = () => {
+    setPressed(".");
+    console.log(evaluated);
+    if (evaluated) {
+      setEvaluated((prevEvaluated) => !prevEvaluated);
+      setResult("0.");
+      return;
+    }
+    if (!canPlaceDecimal()) {
+      return;
+    }
+    if (result.charAt(result.length - 1) === ")") {
+      setResult(result + "*0.");
+      return;
+    }
+    if (
+      isNaN(Number(result.charAt(result.length - 1))) ||
+      result.length === 0
+    ) {
+      setResult((prevResult) => prevResult + "0.");
+      return;
+    }
+    setResult((prevResult) => prevResult + ".");
+  };
+
+  const canPlaceDecimal = () => {
+    let canPlace = true;
+    for (let i = result.length - 1; i >= 0; i--) {
+      // console.log("i:", i);
+      // console.log("result at i:", result.charAt(i));
+      if (isOperator(result.charAt(i)) || isParenthesis(result.charAt(i))) {
+        break;
+      }
+      if (result.charAt(i) === ".") canPlace = false;
+    }
+    // console.log(canPlace);
+    return canPlace;
   };
 
   // Counts how many of a specified character is in a string. Main use is to determine how many
@@ -147,6 +192,7 @@ function App() {
   // Sets expression on Calculator to selected Expression within the History Component.
   const handleExpressionFromHistory = (data) => {
     setResult(data);
+    setEvaluated((prevEvaluated) => !prevEvaluated);
   };
 
   // Sets History array to empty when the 'Clear' button is selected in the History Component.
@@ -262,6 +308,9 @@ function App() {
             </div>
           </div>
           <div>
+            <button className="button-1" id="decimal" onClick={onClickDecimal}>
+              .
+            </button>
             <button className="button-1" id="clear" onClick={onClickClear}>
               {" "}
               CLEAR

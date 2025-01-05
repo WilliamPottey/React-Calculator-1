@@ -90,6 +90,10 @@ button {
   background-color: rgb(245, 82, 82);
 }
 
+#decimal {
+  margin-right: 60px;
+}
+
 #calc_text {
   font-size: 50px;
   display: flex;

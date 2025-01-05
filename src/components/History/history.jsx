@@ -8,11 +8,11 @@ export default function history({
 }) {
   const [past, setPast] = useState(pastExpressions);
 
-  // Handles clicking of an exression within the History Component. Sends the selected Expression
+  // Handles clicking of an expression within the History Component. Sends the selected Expression
   // back to the parent component to set that as the current result within the Calc Screen.
   const getExpression = (result) => {
     let index = result.indexOf("=");
-    let expression = result.substring(0, index);
+    let expression = result.substring(0, index - 1);
     console.log(expression);
     sendDataToParent(expression);
     return expression;
