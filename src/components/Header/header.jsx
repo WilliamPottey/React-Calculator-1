@@ -44,6 +44,12 @@ const header = ({ page }) => {
                 >
                   Calculator
                 </a>
+                <a
+                  href="https://williampottey.github.io/tic-tac-toe/"
+                  className="dropdown-item"
+                >
+                  Tic-Tac-Toe
+                </a>
               </li>
             </ul>
           </div>
